@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 import tensorflow as tf
 from keras.models import load_model
 import numpy as np
