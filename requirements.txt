@@ -1,4 +1,11 @@
-flask
+Flask
 gunicorn
 tensorflow-cpu
 Pillow
+tensorflow
+keras
+numpy
+pandas
+matplotlib
+scikit-learn
+joblib
