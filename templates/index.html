@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Store</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #5a432f, #93765e);
+            color: #ffffff;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: #5a432f;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .navbar .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 8px 12px;
+            transition: 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: #b88650;
+            text-decoration: underline;
+        }
+
+        /* Image Slider with Fade Effect */
+        #project-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            animation: fadeEffect 1s;
+        }
+
+        @keyframes fadeEffect {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+        /* Categories Section */
+        .categories {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .categories h2 {
+            font-size: 32px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .category-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .category {
+            width: 180px;
+            background: #9b8277;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .category a {
+            display: block;
+            padding: 20px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .category img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Welcome To Web Application</div>
+        <ul class="menu">
+            <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Image Slider -->
+    <img id="project-image" src="" alt="Project Image">
+    
+    <script>
+        const imageFiles = [
+            "/static/images/image1.jpg",
+            "/static/images/image2.png",
+            "/static/images/image3.jpg",
+            "/static/images/image4.jpg",
+            "/static/images/image5.jpg",
+            "/static/images/image6.jpg"
+        ];
+
+        function randomImage() {
+            return imageFiles[Math.floor(Math.random() * imageFiles.length)];
+        }
+
+        function changeImage() {
+            const imgElement = document.getElementById("project-image");
+            imgElement.src = randomImage();
+        }
+
+        setInterval(changeImage, 5000);
+        window.onload = changeImage;
+    </script>
+
+    <!-- Categories Section -->
+    <div class="categories">
+        <h2>Our Project !!</h2>
+        <div class="category-container">
+            <div class="category">
+                <a href="{{ url_for('about') }}">
+                    <h1> 🏠 </h1>
+                    <p>Explain Machine Learning</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="{{ url_for('page1') }}">
+                    <h1> 🐾 </h1>
+                    <p>Explain Neural Network</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="{{ url_for('page2') }}">
+                    <h1> 🏠 </h1>
+                    <p>Machine Learning</p>
+                </a>
+            </div>
+            <div class="category">
+                <a href="{{ url_for('page3') }}">
+                    <h1> 🐾 </h1>
+                    <p>Neural Network</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
