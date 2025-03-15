@@ -91,7 +91,7 @@ def predict_diabetes(features):
         print("Error during prediction:", e)
         return f"Error during prediction: {str(e)}"
 
-# ✅ เพิ่มหน้าเว็บใหม่สำหรับพยากรณ์เบาหวาน
+# เพิ่มหน้าเว็บใหม่สำหรับพยากรณ์เบาหวาน
 @app.route('/diabetes', methods=["GET", "POST"])
 def diabetes():
     result = None
@@ -242,5 +242,5 @@ def aboutus():
     return render_template('aboutus.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))  # ใช้ PORT จาก Render หรือ fallback เป็น 10000
+    port = int(os.environ.get("PORT", 8080))  # ใช้ PORT จาก Render หรือ fallback เป็น 10000
     app.run(host='0.0.0.0', port=port)
