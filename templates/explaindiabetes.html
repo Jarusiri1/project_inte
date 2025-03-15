@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔬 Diabetes </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #5a432f;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #f0e6d6;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #f0e6d6;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .feature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-table th, .feature-table td {
+            padding: 12px;
+            border: 1px solid white;
+            text-align: left;
+        }
+
+        .feature-table th {
+            background: #b88650;
+            color: white;
+        }
+
+        .feature-table td {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #93765e;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #f0e6d6;
+            color: #5a432f;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🏥 แนวทางการพัฒนาโมเดลพยากรณ์เบาหวาน</h2>
+
+        <h3>1. การเตรียมข้อมูล (Data Preparation)</h3>
+        <p>
+            เราใช้ชุดข้อมูล Pima Indians Diabetes Dataset ซึ่งเก็บข้อมูลสุขภาพของหญิงชาวอเมริกันเชื้อสายอินเดียที่มีอายุ 21 ปีขึ้นไป
+            โดยมี Feature ต่างๆ ที่เกี่ยวข้องกับความเสี่ยงในการเป็นเบาหวาน
+        </p>
+
+        <table class="feature-table">
+            <tr>
+                <th>Feature</th>
+                <th>คำอธิบาย</th>
+            </tr>
+            <tr>
+                <td>Pregnancies</td>
+                <td>จำนวนครั้งที่ตั้งครรภ์</td>
+            </tr>
+            <tr>
+                <td>Glucose</td>
+                <td>ค่าระดับน้ำตาลในเลือด</td>
+            </tr>
+            <tr>
+                <td>Blood Pressure</td>
+                <td>ค่าความดันโลหิต (mm Hg)</td>
+            </tr>
+            <tr>
+                <td>Skin Thickness</td>
+                <td>ความหนาของผิวหนังใต้ท้องแขน (mm)</td>
+            </tr>
+            <tr>
+                <td>Insulin</td>
+                <td>ค่าระดับอินซูลินในเลือด (mu U/ml)</td>
+            </tr>
+            <tr>
+                <td>BMI</td>
+                <td>ค่าดัชนีมวลกาย (น้ำหนัก/ส่วนสูง^2)</td>
+            </tr>
+            <tr>
+                <td>Diabetes Pedigree Function</td>
+                <td>ค่าพันธุกรรมเบาหวาน</td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>อายุของผู้ป่วย</td>
+            </tr>
+            <tr>
+                <td>Outcome</td>
+                <td>0 = ไม่เป็นเบาหวาน, 1 = เป็นเบาหวาน</td>
+            </tr>
+        </table>
+
+        <h3>1.2 การทำความสะอาดข้อมูล (Data Cleaning)</h3>
+        <p>
+            แทนค่า Missing Values เช่น Glucose, Insulin ด้วยค่ามัธยฐาน (Median) <br>
+            ใช้ Interquartile Range (IQR) เพื่อลบค่า Outliers ที่ผิดปกติ <br>
+            สร้าง Feature Engineering เช่น BMI/Age Ratio เพื่อช่วยให้โมเดลพยากรณ์แม่นยำขึ้น
+        </p>
+
+        <h3>2. ทฤษฎีของอัลกอริทึมที่ใช้ (Algorithm Theory)</h3>
+        <p>
+            เราเลือกใช้ Ensemble Learning ซึ่งรวมโมเดลหลายตัวเข้าด้วยกันเพื่อให้ได้ผลลัพธ์ที่แม่นยำขึ้น
+        </p>
+        <ul style="text-align: left;">
+            <li><b>Random Forest (RF):</b> ใช้หลาย Decision Trees มาช่วยพยากรณ์</li>
+            <li><b>LightGBM (LGBM):</b> เป็น Gradient Boosting Decision Trees (GBDT) ที่เร็วกว่า XGBoost</li>
+            <li><b>Stacking Classifier:</b> รวมผลลัพธ์จาก RF และ LGBM แล้วใช้ Logistic Regression เป็น Meta Model</li>
+        </ul>
+
+        <h3>3. การพัฒนาโมเดล (Model Development Steps)</h3>
+        <p>
+            1. โหลดและเตรียมข้อมูล<br>
+            2. ทำความสะอาดข้อมูล และ Feature Engineering <br>
+            3. แบ่งข้อมูลเป็น Training & Test Set (80:20) <br>
+            4. ใช้ RobustScaler เพื่อ Normalize ข้อมูล <br>
+            5. ฝึกสอนโมเดล Stacking Classifier ด้วย RF และ LGBM <br>
+            6. ทดสอบผลลัพธ์ และวัดค่าความแม่นยำ
+        </p>
+
+        <h3> ผลลัพธ์ที่ได้</h3>
+        <p>
+            ค่า Accuracy ของโมเดลอยู่ที่ประมาณ 75% <br>
+            สามารถทำนายว่าผู้ใช้มีแนวโน้มเป็นเบาหวานหรือไม่จากข้อมูลสุขภาพเบื้องต้น
+        </p>
+
+        <a href="/">Back To Home</a>
+    </div>
+
+</body>
+</html>

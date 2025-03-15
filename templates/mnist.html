@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNIST Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:  #5a432f;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: #b5967b;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            background: white;
+            font-size: 16px;
+        }
+
+        button {
+            background: #b88650;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #8d6b48;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin-top: 10px;
+            font-size: 18px;
+            color: white;
+            background-color: #93765e;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #f0e6d6;
+            color: #5a432f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔢 ทดสอบพยากรณ์ตัวเลข MNIST</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result %}
+            <div class="result">{{ result }}</div>
+            <img src="{{ img_path }}" alt="Uploaded Image" width="200">
+        {% endif %}
+    </div>
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
